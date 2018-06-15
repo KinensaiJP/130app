@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using MiniJSON;
 
 public class Receieve : MonoBehaviour {
@@ -37,6 +36,7 @@ public class Receieve : MonoBehaviour {
         if (www.error != null)
         {
             RequestSuccsess = false;
+            StartCoroutine(MessageBox.PrintMessage("通信エラー", "接続状況を確認してください"));
         }
         else
         {
@@ -47,10 +47,6 @@ public class Receieve : MonoBehaviour {
                 NumberOfPeopleCame = (long)param["count"];
                 Debug.Log("count:" + NumberOfPeopleCame.ToString());
             }
-        }
-        if (RequestSuccsess == false)
-        {
-            StartCoroutine(MessageBox.PrintMessage("通信エラー", "接続状況を確認してください", 0));
         }
     }
     /*
