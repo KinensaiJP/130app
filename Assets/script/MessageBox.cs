@@ -11,23 +11,21 @@ public class MessageBox : MonoBehaviour {
     [SerializeField]
     public Button OK;
     private string Result;
-	
-	void Start () {
 
-	}
-	
-	void Update () {
-    }
-
-    public IEnumerator PrintMessage(string Title_, string Message_)
+    public IEnumerator PrintMessage(string Title_, string Message_, int Mode)
     {
         parent.SetActive(true);
+        if (Mode == 0)
+        {
+            OK.enabled = true;
+        }
 
         Title.text = Title_;
         Message.text = Message_;
 
         yield return OK.OnClickAsObservable().First().ToYieldInstruction();
 
+        OK.enabled = false;
         parent.SetActive(false);
     }
 
