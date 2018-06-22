@@ -251,6 +251,7 @@ GameObject:
   - component: {fileID: 359978828}
   - component: {fileID: 359978827}
   - component: {fileID: 359978831}
+  - component: {fileID: 359978832}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -290,7 +291,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 62.2
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -336,6 +337,17 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_MaxRayIntersections: 0
+--- !u!114 &359978832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 359978826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e01d9d91cdef7448b511d689877e9ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &770360219
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,8 +679,8 @@ GameObject:
   - component: {fileID: 1699531192}
   - component: {fileID: 1699531191}
   - component: {fileID: 1699531190}
-  - component: {fileID: 1699531189}
   - component: {fileID: 1699531188}
+  - component: {fileID: 1699531189}
   m_Layer: 0
   m_Name: Backmainhomebutton2
   m_TagString: Untagged
@@ -705,12 +717,12 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1699531186}
-          m_MethodName: 
+        - m_Target: {fileID: 1699531189}
+          m_MethodName: Onclick
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -727,7 +739,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1699531186}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a64da2164845034f8fa6d2466d6196e, type: 3}
+  m_Script: {fileID: 11500000, guid: 094876a7bbe77504f96856aa7f095930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!65 &1699531190
