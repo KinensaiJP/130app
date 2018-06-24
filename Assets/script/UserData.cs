@@ -26,6 +26,7 @@ public class UserData : MonoBehaviour
         Debug.Log("Any other platform");
 #endif
 
+        DontDestroyOnLoad(gameObject);
         MessageBox = MessageBox_objct.GetComponent<MessageBox>();
 
         if (File.Exists(Path[0]+"\\UserData.json") == false)
