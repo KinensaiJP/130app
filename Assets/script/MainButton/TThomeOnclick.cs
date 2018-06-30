@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class tthomeOnclick : MonoBehaviour
+public class TThomeOnclick : MonoBehaviour
 {
     public void Onclick()
     {

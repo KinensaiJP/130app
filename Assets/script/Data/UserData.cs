@@ -84,7 +84,7 @@ public class UserData : MonoBehaviour
                 IList jsonlist = (IList)Json.Deserialize("[" + www.text + "]");
                 foreach (IDictionary param in jsonlist)
                 {
-                    user.ID = (long)param["COUNT(*)"] + 1;
+                    user.id = (long)param["COUNT(*)"] + 1;
                 }
                 Save();
                 break;

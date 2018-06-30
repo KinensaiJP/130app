@@ -4,7 +4,6 @@ using UnityEngine;
 
 
 public class ButtonRotate : MonoBehaviour {
-    public Transform camera;
 
     // Use this for initialization
     void Start () {
@@ -13,6 +12,7 @@ public class ButtonRotate : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.LookAt(camera);
+        //transform.LookAt(new Vector3(transform.position.x, 1.0f, transform.position.z - 10.0f));
+        transform.eulerAngles = new Vector3(-15.0f, 180.0f, 0.0f);
 	}
 }
