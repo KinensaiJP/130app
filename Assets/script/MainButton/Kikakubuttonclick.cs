@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class kougaimapbuttonOnclick : MonoBehaviour
+public class Kikakubuttonclick : MonoBehaviour
 {
-
-
     public void Onclick()
     {
-        SceneManager.LoadScene("kougaimap");
+        SceneManager.LoadScene("kikakuhome");
     }
-}
 
-  
+}

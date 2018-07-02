@@ -31,6 +31,6 @@ public class DisplayConfig : MonoBehaviour {
 
     void Update()
     {
-        displayupdate();//todo if: boolean
+        //displayupdate();//todo if: boolean
     }
 }   

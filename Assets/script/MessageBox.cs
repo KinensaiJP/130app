@@ -6,26 +6,24 @@ using UniRx;
 
 public class MessageBox : MonoBehaviour {
 
-    public Text Title, Message;
+    public Text title, message;
     public GameObject parent;
-    [SerializeField]
-    public Button OK;
-    private string Result;
+    public Button ok;
 
-    public IEnumerator PrintMessage(string Title_, string Message_, int Mode)
+    public IEnumerator PrintMessage(string title_, string message_, int mode_)
     {
         parent.SetActive(true);
-        if (Mode == 0)
+        if (mode_ == 0)
         {
-            OK.enabled = true;
+            ok.enabled = true;
         }
 
-        Title.text = Title_;
-        Message.text = Message_;
+        title.text = title_;
+        message.text = message_;
 
-        yield return OK.OnClickAsObservable().First().ToYieldInstruction();
+        yield return ok.OnClickAsObservable().First().ToYieldInstruction();
 
-        OK.enabled = false;
+        ok.enabled = false;
         parent.SetActive(false);
     }
 
