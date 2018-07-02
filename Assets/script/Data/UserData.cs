@@ -8,28 +8,29 @@ using System;
 public class UserData : MonoBehaviour
 {
     public User user;
-    public GameObject MessageBox_objct;
-    public long NumberOfPeopleCame;
-    public IList ClassPloject, ClassTT, KodoProjct, KodoTT;
-    public string[] Path = new string[2];
+    public GameObject messageBoxObject;
+    public long numberOfPeopleCame;
+    public IList classPloject, classTT, kodoProjct, kodoTT;
+    public string[] path = new string[2];
 
-    private MessageBox MessageBox;
+    private MessageBox messageBox;
 
     void Start()
     {
 #if UNITY_EDITOR
         Debug.Log("Unity Editor");
-        Path[0] = "./Assets\\script\\Data\\";
+        path[0] = "./Assets\\script\\Data\\";
 #elif UNITY_IPHONE
         Debug.Log("Unity iPhone");
 #elif UNITY_ANDROID
-        Debug.Log("Any other platform");
+        Debug.Log("Unity Android");
 #endif
 
-        DontDestroyOnLoad(gameObject);
-        MessageBox = MessageBox_objct.GetComponent<MessageBox>();
+        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(messageBoxObject);
+        messageBox = messageBoxObject.GetComponent<MessageBox>();
 
-        if (File.Exists(Path[0]+"\\UserData.json") == false)
+        if (File.Exists(path[0]+"\\UserData.json") == false)
         {
             StartCoroutine(CreateUserID());
         }
@@ -51,12 +52,12 @@ public class UserData : MonoBehaviour
     public void Save()
     {
         string SaveData = JsonUtility.ToJson(user);
-        File.WriteAllText(Path[0] + "\\UserData.json", SaveData);
+        File.WriteAllText(path[0] + "\\UserData.json", SaveData);
     }
 
     public void Load()
     {
-        string LoadData = File.ReadAllText(Path[0] + "\\UserData.json");
+        string LoadData = File.ReadAllText(path[0] + "\\UserData.json");
         JsonUtility.FromJsonOverwrite(LoadData, user);
     }
 
@@ -71,11 +72,11 @@ public class UserData : MonoBehaviour
             yield return www;
             if (www.error != null)
             {
-                yield return StartCoroutine(MessageBox.PrintMessage("通信エラー", "接続状況を確認してください",0));
+                yield return StartCoroutine(messageBox.PrintMessage("通信エラー", "接続状況を確認してください",0));
                 cnt++;
                 if (cnt >= 3)
                 {
-                    yield return StartCoroutine(MessageBox.PrintMessage("通信エラー", "情報の取得に失敗しました\nアプリを終了し時間を空けて\nやり直してください。",1));
+                    yield return StartCoroutine(messageBox.PrintMessage("通信エラー", "情報の取得に失敗しました\nアプリを終了し時間を空けて\nやり直してください。",1));
                 }
                 continue;
             }
@@ -98,15 +99,15 @@ public class UserData : MonoBehaviour
         yield return www;
         if (www.error != null)
         {
-            StartCoroutine(MessageBox.PrintMessage("通信エラー", "接続状況を確認してください",0));
+            StartCoroutine(messageBox.PrintMessage("通信エラー", "接続状況を確認してください",0));
         }
         else
         {
             IList jsonlist = (IList)Json.Deserialize("[" + www.text + "]");
             foreach (IDictionary param in jsonlist)
             {
-                NumberOfPeopleCame = (long)param["count"];
-                Debug.Log("count:" + NumberOfPeopleCame.ToString());
+                numberOfPeopleCame = (long)param["count"];
+                Debug.Log("count:" + numberOfPeopleCame.ToString());
             }
         }
     }
