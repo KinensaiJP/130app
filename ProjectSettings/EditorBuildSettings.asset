@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/tthome.unity
     guid: 34178eb1941955d40af5270d18e4dfc8
+  - enabled: 1
+    path: Assets/Scenes/Projects.unity
+    guid: 5e833b8b64e1dc740af2a6635c340e67
   m_configObjects: {}
