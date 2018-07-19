@@ -7,6 +7,7 @@ public class BackmainhomebuttonOnclick : MonoBehaviour
 {
     public void Onclick()
     {
+        UserData.instance.lastMode = 4;
         SceneManager.LoadScene("mainhome");
     }
 
