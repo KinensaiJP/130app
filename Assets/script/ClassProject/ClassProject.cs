@@ -9,22 +9,38 @@ public class ClassProject : MonoBehaviour {
     public Text title, className, description;
     public RawImage image;
 
+    private UserData user;
     private string command;
+    private string url;
+    private string format;
     private int index;
+    private List<ClassProjectList> list;
 	// Use this for initialization
 	void Start () {
-        command = UserData.instance.command;
+        user = UserData.instance;
 
-        for (index = 0; command != UserData.instance.classProject.eachClass[index].className; index++) ;
-        className.text = command.Substring(0, 1) + "-" + command.Substring(1, 1);
-        title.text = UserData.instance.classProject.eachClass[index].title;
-        description.text = UserData.instance.classProject.eachClass[index].description;
-        UserData.instance.command = "";
+        command = user.command;
+
+        list = user.classProject;
+        index = 0;
+        foreach(ClassProjectList param in list)
+        {
+            if (command == param.className)
+            {
+                title.text = param.title;
+                description.text = param.description;
+                url = param.imageURL;
+                format = param.format;
+                StartCoroutine(GetImage());
+            }
+        }
+        user.command = "";
+
     }
 
     private IEnumerator GetImage()
     {
-        WWW www = new WWW("http://localhost/image/"+ UserData.instance.classProject.eachClass[index].description);
+        WWW www = new WWW("http://localhost/image/"+url);
         yield return www;
         image.texture = www.textureNonReadable;
     }

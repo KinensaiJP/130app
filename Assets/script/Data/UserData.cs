@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
 using MiniJSON;
+using LitJson;
 using System;
 
 public class UserData : MonoBehaviour
@@ -11,7 +12,7 @@ public class UserData : MonoBehaviour
     public GameObject messageBoxObject;
     public long numberOfPeopleCame;
     public IList classTT, kodoProjct, kodoTT;
-    public ClassProjectList classProject;
+    public List<ClassProjectList> classProject;
     public string[] path = new string[3];
     public string[] versions = new string[5];
     public int lastMode; //0:ホーム,1:企画,2:外Map,3:内Map,4:アンケート,5:TT
@@ -47,13 +48,13 @@ public class UserData : MonoBehaviour
             Load();
         }
 
-        //StartCoroutine(RequestProjects());
+        StartCoroutine(RequestProjects());
         StartCoroutine(RequestCount());
         StartCoroutine(UpAnswer());
         //StartCoroutine(RequestLatency());
 
     }
-
+    
     void Update()
     {
 
@@ -61,6 +62,7 @@ public class UserData : MonoBehaviour
 
     public void Save()
     {
+        //user.Encode();
         string SaveData = JsonUtility.ToJson(user);
         File.WriteAllText(path[0] + "\\UserData.json", SaveData);
     }
@@ -69,6 +71,7 @@ public class UserData : MonoBehaviour
     {
         string LoadData = File.ReadAllText(path[0] + "\\UserData.json");
         JsonUtility.FromJsonOverwrite(LoadData, user);
+        //user.Encode();
     }
 
     public IEnumerator CreateUserID()
@@ -131,12 +134,13 @@ public class UserData : MonoBehaviour
         }
         else
         {
-            classProject = JsonUtility.FromJson<ClassProjectList>("["+www.text+"]");
+            classProject = JsonMapper.ToObject<List<ClassProjectList>>("["+www.text+"]");
         }
     }
 
     public IEnumerator UpAnswer()
     {
+        //user.Encode();
         WWWForm form = new WWWForm();
         form.AddField("from", "app");
         form.AddField("ID", user.id.ToString());
@@ -156,6 +160,7 @@ public class UserData : MonoBehaviour
         }
         else
         {
+            Debug.Log(www.text);
         }
 
     }
