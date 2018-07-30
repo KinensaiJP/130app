@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.IO;
 using System.Collections.Generic;
+using TouchScript.Gestures;
 using UnityEngine;
 using MiniJSON;
 using LitJson;
@@ -10,20 +11,24 @@ public class UserData : MonoBehaviour
 {
     public User user;
     public GameObject messageBoxObject;
+    public Vector2 swipeDif;
     public long numberOfPeopleCame;
     public IList classTT, kodoProjct, kodoTT;
     public List<ClassProjectList> classProject;
     public string[] path = new string[3];
     public string[] versions = new string[5];
-    public int lastMode; //0:ホーム,1:企画,2:外Map,3:内Map,4:アンケート,5:TT
-    public string command;//ほかのシーンに移るときに渡したいデータを入れる。受け取ったら空にする。
+    public int[] touchVal;
+    public int lastMode;
+    public string command;
     public static UserData instance;
+    public static Vector2 screenSize;
 
     private MessageBox messageBox;
-
+    private Vector2 lastTouchPos;
 
     void Start()
     {
+        screenSize = new Vector2(Screen.width, Screen.height);
 #if UNITY_EDITOR
         Debug.Log("Unity Editor");
         path[0] = "./Assets\\script\\Data\\";
@@ -53,11 +58,67 @@ public class UserData : MonoBehaviour
         StartCoroutine(UpAnswer());
         //StartCoroutine(RequestLatency());
 
+        touchVal = new int[] { 0, 0, 0 };
+
     }
-    
+
+    public FlickGesture flickGesture;
+
+    private void OnEnable()
+    {
+        flickGesture.Flicked += OnFlicked;
+    }
+
+    private void OnDisable()
+    {
+        flickGesture.Flicked -= OnFlicked;
+    }
+
+    private void OnFlicked(object sender, EventArgs e)
+    {
+        Debug.Log("フリックされた: " + flickGesture.ScreenFlickVector);
+        if (flickGesture.ScreenFlickVector.x < 0)
+        {
+            touchVal[0] = 3;
+        }
+        else
+        {
+            touchVal[0] = 4;
+        }
+    }
+
     void Update()
     {
-
+        if (Input.touchCount > 0 && touchVal[0] < 3)
+        {
+            touchVal[1] = Input.touchCount;
+            Touch touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Began)
+            {
+                touchVal[0] = 1;
+                lastTouchPos = Input.mousePosition;
+            }
+            else if (touch.phase == TouchPhase.Stationary)
+            {
+                touchVal[0] = 2;
+                swipeDif = (lastTouchPos - touch.position) / screenSize;
+                lastTouchPos = touch.position;
+            }
+            else if (touch.phase == TouchPhase.Moved)
+            {
+                touchVal[0] = 2;
+                swipeDif = (lastTouchPos - touch.position) / screenSize;
+                lastTouchPos = touch.position;
+            }
+            else if (touch.phase == TouchPhase.Ended)
+            {
+                touchVal[0] = 0;
+            }
+        }
+        else
+        {
+            touchVal[1] = 0;
+        }
     }
 
     public void Save()
