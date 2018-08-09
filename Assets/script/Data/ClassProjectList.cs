@@ -8,4 +8,5 @@ public class ClassProjectList
     public string description;
     public string format;
     public string imageURL;
+    public string TT;
 }

@@ -2353,10 +2353,13 @@ MonoBehaviour:
     - 
     - 
     anke4: 0
+    booking: []
   messageBoxObject: {fileID: 1360899102}
   swipeDif: {x: 0, y: 0}
   numberOfPeopleCame: 0
   classProject: []
+  kodoTT: []
+  stageTT: []
   path:
   - 
   - 
@@ -4046,7 +4049,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 6.51
+  near clip plane: 6.1
   far clip plane: 1000
   field of view: 61.6
   orthographic: 0
@@ -4073,7 +4076,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1965349741}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -8.86}
+  m_LocalPosition: {x: 0, y: 0, z: -8.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
