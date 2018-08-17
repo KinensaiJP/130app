@@ -273,7 +273,7 @@ public class UserData : MonoBehaviour
         {
             if (tt.ID.ToString() == id)
             {
-                if (Int64.Parse(tt.ntime) - 1500 < now && Int64.Parse(tt.ntime) > now)
+                if (Int64.Parse(tt.ntime) - 1500 < now /*&& Int64.Parse(tt.ntime) > now*/)
                 {
                     StartCoroutine(
                      messageBox.PrintMessage(
@@ -286,7 +286,7 @@ public class UserData : MonoBehaviour
         {
             if (tt.ID.ToString() == id)
             {
-                if (Int64.Parse(tt.ntime) - 1500 < now && Int64.Parse(tt.ntime) > now)
+                if (Int64.Parse(tt.ntime) - 1500 < now /*&& Int64.Parse(tt.ntime) > now*/)
                 {
                     StartCoroutine(
                      messageBox.PrintMessage(
@@ -302,7 +302,7 @@ public class UserData : MonoBehaviour
                 bool flag = false;
                 foreach (string time in tt.TT.Split('\n'))
                 {
-                    if (Int64.Parse(time) - 1500 < now && Int64.Parse(time) > now)
+                    if (Int64.Parse(time) - 1500 < now /*&& Int64.Parse(time) > now*/)
                     {
                         flag = true;
                         string place = "";
@@ -310,7 +310,7 @@ public class UserData : MonoBehaviour
                         else place = "中学";
                         StartCoroutine(
                          messageBox.PrintMessage(
-                          "まもなく開始", tt.title + "\n日時:" + time.Substring(4,2) + "月" + time.Substring(6,2) + "日 " + time.Substring(8,2) + "時" + time.Substring(10,2) + "分" + "\n場所" + place + tt.className.Remove(0, 1), true, false));
+                          "まもなく開始", tt.title + "\n日時:" + time.Substring(4,2) + "月" + time.Substring(6,2) + "日 " + time.Substring(8,2) + "時" + time.Substring(10,2) + "分" + "\n場所: " + place + tt.className.Remove(0, 1), true, false));
                     }
                 }
                 if (flag == false) notice.Enqueue(id);
