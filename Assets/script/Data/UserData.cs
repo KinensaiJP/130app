@@ -18,10 +18,10 @@ public class UserData : MonoBehaviour
     public IList classTT;
     public List<ClassProjectList> classProject;
     public List<TT> kodoTT, stageTT;
+    public Stack<string> lastMode;
     public string[] path = new string[3];
     public string[] versions = new string[5];
     public int[] touchVal;
-    public int lastMode;
     public string command;
     public static UserData instance;
     public static Vector2 screenSize;
@@ -48,7 +48,7 @@ public class UserData : MonoBehaviour
         DontDestroyOnLoad(this);
         DontDestroyOnLoad(messageBoxObject);
         messageBox = messageBoxObject.GetComponent<MessageBox>();
-
+        lastMode = new Stack<string>();
         //StartCoroutine(CheckVersion());
 
         if (File.Exists(path[0]+"\\UserData.json") == false)
@@ -239,6 +239,7 @@ public class UserData : MonoBehaviour
 
     public IEnumerator UpAnswer()
     {
+        Save();
         //user.Encode();
         WWWForm form = new WWWForm();
         form.AddField("from", "app");
@@ -273,7 +274,7 @@ public class UserData : MonoBehaviour
         {
             if (tt.ID.ToString() == id)
             {
-                if (Int64.Parse(tt.ntime) - 1500 < now /*&& Int64.Parse(tt.ntime) > now*/)
+                if (Int64.Parse(tt.ntime) - 1500 < now && Int64.Parse(tt.ntime) > now)
                 {
                     StartCoroutine(
                      messageBox.PrintMessage(
@@ -286,7 +287,7 @@ public class UserData : MonoBehaviour
         {
             if (tt.ID.ToString() == id)
             {
-                if (Int64.Parse(tt.ntime) - 1500 < now /*&& Int64.Parse(tt.ntime) > now*/)
+                if (Int64.Parse(tt.ntime) - 1500 < now && Int64.Parse(tt.ntime) > now)
                 {
                     StartCoroutine(
                      messageBox.PrintMessage(
@@ -302,7 +303,7 @@ public class UserData : MonoBehaviour
                 bool flag = false;
                 foreach (string time in tt.TT.Split('\n'))
                 {
-                    if (Int64.Parse(time) - 1500 < now /*&& Int64.Parse(time) > now*/)
+                    if (Int64.Parse(time) - 1500 < now && Int64.Parse(time) > now)
                     {
                         flag = true;
                         string place = "";

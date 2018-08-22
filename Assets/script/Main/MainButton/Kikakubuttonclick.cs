@@ -7,8 +7,8 @@ public class Kikakubuttonclick : MonoBehaviour
 {
     public void Onclick()
     {
-        UserData.instance.command = "H1A";
-        SceneManager.LoadScene("Projects");
+        UserData.instance.lastMode.Push(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("kikakuhome");
     }
 
 }
