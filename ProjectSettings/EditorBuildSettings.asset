@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Projects.unity
     guid: 5e833b8b64e1dc740af2a6635c340e67
+  - enabled: 1
+    path: Assets/Scenes/Meibo.unity
+    guid: aa9d2736d57d18641b974b58dd3afeab
   m_configObjects: {}

@@ -20,19 +20,44 @@ public class ClassProject : MonoBehaviour {
         user = UserData.instance;
 
         command = user.command;
+        Debug.Log(command);
 
-        list = user.classProject;
-        index = 0;
-        foreach(ClassProjectList param in list)
+        if (command.Length == 3)
         {
-            if (command == param.className)
+            list = user.classProject;
+            index = 0;
+            foreach (ClassProjectList param in list)
             {
-                title.text = param.title;
-                description.text = param.description;
-                url = param.imageURL;
-                format = param.format;
-                StartCoroutine(GetImage());
+                if (command == param.className)
+                {
+                    className.text = command;
+                    title.text = param.title;
+                    description.text = param.description;
+                    url = param.imageURL;
+                    format = param.format;
+                    StartCoroutine(GetImage());
+                }
             }
+        }
+        else
+        {
+            foreach (TT param in user.kodoTT)
+            {
+                if (command == param.name)
+                {
+                    title.text = param.name;
+                    description.text = "場所: " + param.place + "\n\nメンバー:\n" + param.member + "\n\n開始時間:" + param.dtime;
+                }
+            }
+            foreach (TT param in user.stageTT)
+            {
+                if (command == param.name)
+                {
+                    title.text = param.name;
+                    description.text = "場所: " + param.place + "\n\nメンバー:\n" + param.member + "\n\n開始時間:" + param.dtime;
+                }
+            }
+
         }
         user.command = "";
 

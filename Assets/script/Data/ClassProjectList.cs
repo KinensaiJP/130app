@@ -9,4 +9,5 @@ public class ClassProjectList
     public string format;
     public string imageURL;
     public string TT;
+    public string latency;
 }
