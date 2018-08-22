@@ -7,6 +7,7 @@ public class TThomeOnclick : MonoBehaviour
 {
     public void Onclick()
     {
+        UserData.instance.lastMode.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("tthome");
     }
 

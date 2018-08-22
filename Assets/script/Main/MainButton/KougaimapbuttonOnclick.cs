@@ -9,6 +9,7 @@ public class KougaimapbuttonOnclick : MonoBehaviour
 
     public void Onclick()
     {
+        UserData.instance.lastMode.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("kougaimap");
     }
 }

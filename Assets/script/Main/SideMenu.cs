@@ -26,7 +26,7 @@ public class SideMenu : MonoBehaviour {
     {
         Debug.Log("フリックされた: " + flickGesture.ScreenFlickVector + (flickGesture.ScreenPosition.x - flickGesture.ScreenFlickVector.x));
         
-        if (enable == false && flickGesture.ScreenFlickVector.x > 0 && flickGesture.ScreenPosition.x- flickGesture.ScreenFlickVector.x< 30f)
+        if (enable == false && flickGesture.ScreenFlickVector.x > 0 && flickGesture.ScreenPosition.x- flickGesture.ScreenFlickVector.x< 60f)
         {
             enable = true;
         }
