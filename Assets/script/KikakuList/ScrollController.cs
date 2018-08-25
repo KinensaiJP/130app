@@ -13,6 +13,7 @@ public class ScrollController : MonoBehaviour
 
     public void ReDraw()
     {
+        if (list.Count != 0)
         for(int i = 0;i < list.Count+1; i++)
         {
             Destroy(list.Pop().gameObject);
