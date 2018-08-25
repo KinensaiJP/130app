@@ -59,7 +59,6 @@ public class ClassProject : MonoBehaviour {
             }
 
         }
-        user.command = "";
 
     }
 

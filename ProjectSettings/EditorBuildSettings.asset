@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Meibo.unity
     guid: aa9d2736d57d18641b974b58dd3afeab
+  - enabled: 1
+    path: Assets/Scenes/Kiyaku.unity
+    guid: 3517f3d9e64fd5746bf3a02f3fe7c109
   m_configObjects: {}

@@ -7,6 +7,7 @@ public class AnketbuttonOnclick : MonoBehaviour {
     
         public void Onclick()
         {
+        UserData.instance.lastMode.Push("mainhome");
             SceneManager.LoadScene("ankethome");
         }
     

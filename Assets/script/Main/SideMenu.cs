@@ -26,7 +26,7 @@ public class SideMenu : MonoBehaviour {
     {
         Debug.Log("フリックされた: " + flickGesture.ScreenFlickVector + (flickGesture.ScreenPosition.x - flickGesture.ScreenFlickVector.x));
         
-        if (enable == false && flickGesture.ScreenFlickVector.x > 0 && flickGesture.ScreenPosition.x- flickGesture.ScreenFlickVector.x< 30f)
+        if (enable == false && flickGesture.ScreenFlickVector.x > 0 && flickGesture.ScreenPosition.x- flickGesture.ScreenFlickVector.x< 60f)
         {
             enable = true;
         }
@@ -47,11 +47,15 @@ public class SideMenu : MonoBehaviour {
 	void Update () {
 		if (enable == false)
         {
-            transform.localPosition = new Vector3(deffalt.x, 0f, 0f);
+            if (transform.localPosition.x > deffalt.x)
+                transform.localPosition = new Vector3(transform.localPosition.x - 2500f * Time.deltaTime, 0f, 0f);
+            else transform.localPosition = new Vector3(deffalt.x, 0f, 0f);
         }
         else
         {
-            transform.localPosition = new Vector3(deffalt.x+900f, 0f, 0f);
+            if (transform.localPosition.x < deffalt.x+800f)
+                transform.localPosition = new Vector3(transform.localPosition.x + 2500f*Time.deltaTime, 0f, 0f);
+            else transform.localPosition = new Vector3(deffalt.x + 900f, 0f, 0f);
         }
 	}
 }

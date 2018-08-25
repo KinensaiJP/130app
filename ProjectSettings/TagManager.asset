@@ -41,3 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: kuru
+    uniqueID: 2234437361
+    locked: 0
