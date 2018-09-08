@@ -29,20 +29,8 @@ public class Map2DMove : MonoBehaviour {
     }
     public void OnClassClick(string str)
     {
-        //Debug.Log(str);
-        string classname = "";
-        if (str[0] == 'C')
-        {
-            str.Remove(0, 1);
-            classname = "J" + str;
-        }
-        else if(str[0] == 'K')
-        {
-            str.Remove(0, 1);
-            classname = "H" + str;
-        }
 
-        UserData.instance.command = classname;
+        UserData.instance.command = str;
         UserData.instance.lastMode.Push(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("Projects");
 
@@ -83,13 +71,13 @@ public class Map2DMove : MonoBehaviour {
             {
                 tx = (TouchUtil.GetTouchPosition().x - sPos.x) / wid; //横移動量(-1<tx<1)
                 ty = (TouchUtil.GetTouchPosition().y - sPos.y) / hei; //縦移動量(-1<ty<1)
-                obj.transform.position = sRot + new Vector3(kando * tx, kando * ty, 0);
+                obj.transform.position = sRot + new Vector3(obj.transform.localScale.x * kando * tx, obj.transform.localScale.x * kando * ty, 0);
                 //obj.transform.Rotate(new Vector3(90 * ty, -90 * tx, 0), Space.World);
             }
         }
-        /*
-        else if (Input.touchCount >= 2)
+         if (Input.touchCount >= 2)
         {
+            //Debug.Log("a");
             //ピンチイン ピンチアウト
             Touch t1 = Input.GetTouch(0);
             Touch t2 = Input.GetTouch(1);
@@ -103,10 +91,8 @@ public class Map2DMove : MonoBehaviour {
                 nDist = Vector2.Distance(t1.position, t2.position);
                 v = v + (nDist - sDist) / diag;
                 sDist = nDist;
-                if (v > vMax) v = vMax;
-                if (v < vMin) v = vMin;
-                obj.transform.localScale = initScale * v;
+                obj.transform.localScale = initScale * v * 3;
             }
-        }*/
+        }
     }
 }
