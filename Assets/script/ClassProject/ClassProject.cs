@@ -31,7 +31,14 @@ public class ClassProject : MonoBehaviour {
                 if (command == param.className)
                 {
                     className.text = command;
-                    title.text = param.title;
+                    if (param.title.Length < 17)
+                    {
+                        title.text = "<size=60>"+param.title+"<size/>";
+                    }
+                    else
+                    {
+                        title.text = "<size=50>" + param.title + "<size/>";
+                    }
                     description.text = param.description;
                     url = param.imageURL;
                     format = param.format;
