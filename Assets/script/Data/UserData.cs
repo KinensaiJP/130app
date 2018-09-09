@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using TouchScript.Gestures;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using MiniJSON;
 using LitJson;
 using System;
@@ -135,7 +136,16 @@ public class UserData : MonoBehaviour
             StartCoroutine(Notice());
             timeInterval = 0f;
         }
-
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            // エスケープキー取得
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                command = "";
+                lastMode.Clear();
+                SceneManager.LoadScene("mainhome");
+            }
+        }
     }
 
     public void Save()
