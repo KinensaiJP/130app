@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SideSwitch : MonoBehaviour {
-
+    public SideMenu sideMenu;
 	public void OnClick()
     {
-        var a = GetComponentInParent<SideMenu>();
-        if (a.enable) a.enable = false;
-        else a.enable = true;
+        
+        if (sideMenu.enable) sideMenu.enable = false;
+        else sideMenu.enable = true;
     }
 
 }

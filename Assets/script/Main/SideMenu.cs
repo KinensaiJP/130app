@@ -8,10 +8,10 @@ using UnityEngine.UI;
 public class SideMenu : MonoBehaviour {
 
     public FlickGesture flickGesture;
-
+    public Button back;
     public bool enable;
     Vector3 deffalt;
-
+    bool lastSwitch;
     private void OnEnable()
     {
         flickGesture.Flicked += OnFlicked;
@@ -45,17 +45,30 @@ public class SideMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (enable == false)
+        if (lastSwitch != enable)
         {
-            if (transform.localPosition.x > deffalt.x)
-                transform.localPosition = new Vector3(transform.localPosition.x - 2500f * Time.deltaTime, 0f, 0f);
-            else transform.localPosition = new Vector3(deffalt.x, 0f, 0f);
+            if (enable == false)
+            {
+                if (transform.localPosition.x > deffalt.x)
+                    transform.localPosition = new Vector3(transform.localPosition.x - 2500f * Time.deltaTime, 0f, 0f);
+                else
+                {
+                    transform.localPosition = new Vector3(deffalt.x, 0f, 0f);
+                    lastSwitch = enable;
+                }
+                back.gameObject.SetActive(false);
+            }
+            else
+            {
+                if (transform.localPosition.x < deffalt.x + 800f)
+                    transform.localPosition = new Vector3(transform.localPosition.x + 2500f * Time.deltaTime, 0f, 0f);
+                else
+                {
+                    transform.localPosition = new Vector3(deffalt.x + 900f, 0f, 0f);
+                    lastSwitch = enable;
+                }
+                back.gameObject.SetActive(true);
+            }
         }
-        else
-        {
-            if (transform.localPosition.x < deffalt.x+800f)
-                transform.localPosition = new Vector3(transform.localPosition.x + 2500f*Time.deltaTime, 0f, 0f);
-            else transform.localPosition = new Vector3(deffalt.x + 900f, 0f, 0f);
-        }
-	}
+    }
 }

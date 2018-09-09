@@ -129,7 +129,7 @@ public class UserData : MonoBehaviour
         {
             touchVal[1] = 0;
         }
-        if (timeInterval >= 3f && noticeflag)
+        if (timeInterval >= 3f && noticeflag && notice.Count > 0)
         {
             noticeflag = false;
             StartCoroutine(Notice());
@@ -160,7 +160,7 @@ public class UserData : MonoBehaviour
         {
             WWWForm form = new WWWForm();
             form.AddField("from", "app");
-            WWW www = new WWW("http://api.kinensai.jp/AddUser.php", form);
+            WWW www = new WWW("https://api.kinensai.jp/AddUser.php", form);
             yield return www;
             if (www.error != null)
             {
@@ -187,7 +187,7 @@ public class UserData : MonoBehaviour
 
     public IEnumerator RequestCount()
     {
-        WWW www = new WWW("http://api.kinensai.jp/count.php");
+        WWW www = new WWW("https://api.kinensai.jp/count.php");
         yield return www;
         if (www.error != null)
         {
@@ -205,7 +205,7 @@ public class UserData : MonoBehaviour
 
     public IEnumerator RequestProjects()
     {
-        WWW www = new WWW("http://api.kinensai.jp/ClassProject.php");
+        WWW www = new WWW("https://api.kinensai.jp/ClassProject.php");
         yield return www;
         if (www.error != null)
         {
@@ -222,7 +222,7 @@ public class UserData : MonoBehaviour
         WWWForm form = new WWWForm();
         if (place) form.AddField("place", "講堂");
         else       form.AddField("place", "ステージ");
-        WWW www = new WWW("http://api.kinensai.jp/TT.php", form);
+        WWW www = new WWW("https://api.kinensai.jp/TT.php", form);
         yield return www;
         if (www.error != null)
         {
@@ -254,7 +254,7 @@ public class UserData : MonoBehaviour
         if (user.anke23[2] != "") form.AddField("a3", user.anke23[2]);
         else form.AddField("a3", "null");
         form.AddField("a4", user.anke4.ToString());
-        WWW www = new WWW("http://api.kinensai.jp/Answer.php", form);
+        WWW www = new WWW("https://api.kinensai.jp/Answer.php", form);
         yield return www;
         if (www.error != null)
         {
@@ -270,7 +270,6 @@ public class UserData : MonoBehaviour
     public IEnumerator Notice()
     {
         long now = Int64.Parse(DateTime.Now.ToString("yyyyMMddHHmmss"));
-        if (notice.Count == 0) yield break;
         string id = notice.Dequeue();
         foreach (TT tt in kodoTT)
         {
