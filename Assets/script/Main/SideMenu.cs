@@ -14,12 +14,12 @@ public class SideMenu : MonoBehaviour {
     bool lastSwitch;
     private void OnEnable()
     {
-        flickGesture.Flicked += OnFlicked;
+        //flickGesture.Flicked += OnFlicked;
     }
 
     private void OnDisable()
     {
-        flickGesture.Flicked -= OnFlicked;
+        //flickGesture.Flicked -= OnFlicked;
     }
 
     private void OnFlicked(object sender, EventArgs e)
