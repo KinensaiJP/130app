@@ -247,7 +247,7 @@ PlayerSettings:
   AndroidTargetArchitectures: 7
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/Users/kokoa/Documents/App-unity-/user.keystore
+  AndroidKeystoreName: C:/Users/kokoa/Documents/App-unity-/new_user.keystore
   AndroidKeyaliasName: kinensaiapp2018
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 1
