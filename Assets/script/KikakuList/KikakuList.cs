@@ -23,17 +23,22 @@ public class KikakuList : MonoBehaviour {
         {
             scroll_class.mode = "Kodo";
             mode.text = "講堂";
-            scroll_class.ReDraw();
+            scroll_class.ReDraw(1);
         }else if (scroll_class.mode == "Kodo")
         {
             scroll_class.mode = "Stage";
             mode.text = "ステージ";
-            scroll_class.ReDraw();
+            scroll_class.ReDraw(2);
         }else if (scroll_class.mode == "Stage")
+        {
+            scroll_class.mode = "Club";
+            mode.text = "クラブ";
+            scroll_class.ReDraw(3);
+        }else if (scroll_class.mode == "Club")
         {
             scroll_class.mode = "Class";
             mode.text = "クラス";
-            scroll_class.ReDraw();
+            scroll_class.ReDraw(0);
         }
     }
 }

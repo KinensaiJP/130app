@@ -7,83 +7,45 @@ public class ScrollController : MonoBehaviour
 
     [SerializeField]
     RectTransform prefab = null;
+    [SerializeField]
+    ScrollRect scrollRect;
+    [SerializeField]
+    RectTransform classObject, kodoObject, stageObject, clubObject;
+    RectTransform scrollTransform, thisRecttransform;
     Stack<RectTransform> list;
     public Texture2D icon1, icon2, icon3;
     public string mode;
+    public float[] posSnap;
+    float numOfRow;
+    int objectNum;
 
-    public void ReDraw()
+    public void ReDraw(int snap)
     {
-        if (list.Count != 0)
-        for(int i = 0;i < list.Count+1; i++)
-        {
-            Destroy(list.Pop().gameObject);
-        }
-        switch (mode)
-        {
-            case "Class":
-                for (int i = 0; i < UserData.instance.classProject.Count; i++)
-                {
-                    var item = GameObject.Instantiate(prefab) as RectTransform;
-                    list.Push(item);
-                    item.SetParent(transform, false);
-                    //item.position = new Vector3(item.position.x, item.position.y - (i * 100f), item.position.z);
-                    var text = item.GetComponentInChildren<Text>();
-                    var image = item.GetComponentInChildren<RawImage>();
-                    text.text = UserData.instance.classProject[i].className+" "+UserData.instance.classProject[i].title;
-                    if (UserData.instance.classProject[i].latency == "Vacant")
-                    {
-                        image.texture = icon1;
-                    }else if(UserData.instance.classProject[i].latency == "OK")
-                    {
-                        image.texture = icon2;
-                    }else if(UserData.instance.classProject[i].latency == "Crowded")
-                    {
-                        image.texture = icon3;
-                    }
-                }
-                break;
-            case "Kodo":
-                foreach (TT tt in UserData.instance.kodoTT)
-                {
-                    var item = GameObject.Instantiate(prefab) as RectTransform;
-                    list.Push(item);
-                    item.SetParent(transform, false);
-                    //item.position = new Vector3(item.position.x, item.position.y - (i * 100f), item.position.z);
-                    var text = item.GetComponentInChildren<Text>();
-                    var image = item.GetComponentInChildren<RawImage>();
-                    text.text = tt.name;
-                    image.gameObject.SetActive(false);
-                }
-                break;
-            case "Stage":
-                foreach (TT tt in UserData.instance.stageTT)
-                {
-                    var item = GameObject.Instantiate(prefab) as RectTransform;
-                    list.Push(item);
-                    item.SetParent(transform, false);
-                    //item.position = new Vector3(item.position.x, item.position.y - (i * 100f), item.position.z);
-                    var text = item.GetComponentInChildren<Text>();
-                    var image = item.GetComponentInChildren<RawImage>();
-                    text.text = tt.name;
-                    image.gameObject.SetActive(false);
-                }
-
-                break;
-        }
+        thisRecttransform.anchoredPosition = new Vector3(0f, posSnap[snap]+10, 0f);
     }
 
     void Start()
     {
+        thisRecttransform = GetComponent<RectTransform>();
         mode = "Class";
         list = new Stack<RectTransform>();
+        scrollTransform = scrollRect.GetComponent<RectTransform>();
+        posSnap = new float[4];
+        posSnap[0] = 0.0f;
+
+        var item = GameObject.Instantiate(prefab) as RectTransform;
+        item.SetParent(classObject.transform, false);
+        var text = item.GetComponentInChildren<Text>();
+        text.text = "<size=60>クラス企画</size>";
+        var image = item.GetComponentInChildren<RawImage>();
+        image.gameObject.SetActive(false);
+
         for (int i = 0; i < UserData.instance.classProject.Count; i++)
         {
-            var item = GameObject.Instantiate(prefab) as RectTransform;
-            list.Push(item);
-            item.SetParent(transform, false);
-            //item.position = new Vector3(item.position.x, item.position.y - (i * 100f), item.position.z);
-            var text = item.GetComponentInChildren<Text>();
-            var image = item.GetComponentInChildren<RawImage>();
+            item = GameObject.Instantiate(prefab) as RectTransform;
+            item.SetParent(classObject.transform, false);
+            text = item.GetComponentInChildren<Text>();
+            image = item.GetComponentInChildren<RawImage>();
             text.text = UserData.instance.classProject[i].className + " " + UserData.instance.classProject[i].title;
             if (UserData.instance.classProject[i].latency == "Vacant")
             {
@@ -98,5 +60,74 @@ public class ScrollController : MonoBehaviour
                 image.texture = icon3;
             }
         }
+
+        Space("講堂企画", 1, kodoObject);
+        foreach (TT tt in UserData.instance.kodoTT)
+        {
+            item = GameObject.Instantiate(prefab) as RectTransform;
+            item.SetParent(kodoObject.transform, false);
+            //item.position = new Vector3(item.position.x, item.position.y - (i * 100f), item.position.z);
+            text = item.GetComponentInChildren<Text>();
+            image = item.GetComponentInChildren<RawImage>();
+            text.text = tt.name;
+            image.gameObject.SetActive(false);
+        }
+
+        Space("ステージ企画", 2, stageObject);
+        foreach (TT tt in UserData.instance.stageTT)
+        {
+            item = GameObject.Instantiate(prefab) as RectTransform;
+            item.SetParent(stageObject.transform, false);
+            text = item.GetComponentInChildren<Text>();
+            image = item.GetComponentInChildren<RawImage>();
+            text.text = tt.name;
+            image.gameObject.SetActive(false);
+        }
+
+        Space("クラブ企画", 3, clubObject);
+        foreach (ClubProjectList param in UserData.instance.clubProject)
+        {
+            item = GameObject.Instantiate(prefab) as RectTransform;
+            item.SetParent(clubObject.transform, false);
+            text = item.GetComponentInChildren<Text>();
+            image = item.GetComponentInChildren<RawImage>();
+            text.text = param.name;
+            image.gameObject.SetActive(false);
+        }
+
+        posSnap[0] = 0f;
+        posSnap[1] = classObject.transform.childCount * 104f;
+        posSnap[2] = posSnap[1] + kodoObject.childCount * 104f;
+        posSnap[3] = posSnap[2] + stageObject.childCount * 104f;
+
+        Debug.Log(objectNum = list.Count);
+
     }
+
+    void Update()
+    {
+        float presentPos = thisRecttransform.anchoredPosition.y;
+        if (presentPos <= posSnap[1]) mode = "Class";
+        else if (posSnap[1] < presentPos && presentPos <= posSnap[2]) mode = "Kodo";
+        else if (posSnap[2] < presentPos && presentPos <= posSnap[3]) mode = "Stage";
+        else mode = "Club";
+    }
+
+    void Space(string title_,int index_,RectTransform rect_)
+    {
+        var item = GameObject.Instantiate(prefab) as RectTransform;
+        item.SetParent(rect_.transform, false);
+        var text = item.GetComponentInChildren<Text>();
+        text.text = "";
+        var image = item.GetComponentInChildren<RawImage>();
+        image.gameObject.SetActive(false);
+        posSnap[index_] = list.Count;
+        item = GameObject.Instantiate(prefab) as RectTransform;
+        item.SetParent(rect_.transform, false);
+        text = item.GetComponentInChildren<Text>();
+        text.text = "<size=60>"+title_+"</size>";
+        image = item.GetComponentInChildren<RawImage>();
+        image.gameObject.SetActive(false);
+    }
+
 }

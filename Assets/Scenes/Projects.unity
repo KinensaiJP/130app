@@ -490,6 +490,11 @@ Prefab:
       propertyPath: m_Padding.m_Bottom
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114303669521834646, guid: dccd30c09aeb3fb48b347215a7f23323,
+        type: 2}
+      propertyPath: m_Inertia
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114924018533491938, guid: dccd30c09aeb3fb48b347215a7f23323, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: dccd30c09aeb3fb48b347215a7f23323, type: 2}

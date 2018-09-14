@@ -19,6 +19,7 @@ public class UserData : MonoBehaviour
     public IList classTT;
     public List<ClassProjectList> classProject;
     public List<TT> kodoTT, stageTT;
+    public List<ClubProjectList> clubProject;
     public Stack<string> lastMode;
     public string[] path = new string[3];
     public string[] versions = new string[5];
@@ -32,6 +33,7 @@ public class UserData : MonoBehaviour
     private Vector2 lastTouchPos;
     private Queue<string> notice;
     private float timeInterval;
+    private float timeInterval2;
     private bool noticeflag;
 
     void Start()
@@ -66,9 +68,9 @@ public class UserData : MonoBehaviour
         noticeflag = true;
 
         StartCoroutine(RequestProjects());
+        StartCoroutine(RequestClubProjects());
         StartCoroutine(RequestCount());
         StartCoroutine(UpAnswer());
-        //StartCoroutine(RequestLatency());
         StartCoroutine(RequestTT(true));
         StartCoroutine(RequestTT(false));
         touchVal = new int[] { 0, 0, 0 };
@@ -100,6 +102,7 @@ public class UserData : MonoBehaviour
     void Update()
     {
         timeInterval += Time.deltaTime;
+        timeInterval2 += Time.deltaTime;
         if (Input.touchCount > 0 && touchVal[0] < 3)
         {
             touchVal[1] = Input.touchCount;
@@ -145,6 +148,16 @@ public class UserData : MonoBehaviour
                 lastMode.Clear();
                 SceneManager.LoadScene("mainhome");
             }
+        }
+        if (timeInterval2 >= 60f)
+        {
+            StartCoroutine(RequestProjects());
+            StartCoroutine(RequestClubProjects());
+            StartCoroutine(RequestCount());
+            StartCoroutine(RequestTT(true));
+            StartCoroutine(RequestTT(false));
+            Save();
+            timeInterval2 = 0f;
         }
     }
 
@@ -215,7 +228,8 @@ public class UserData : MonoBehaviour
 
     public IEnumerator RequestProjects()
     {
-        WWW www = new WWW("https://api.kinensai.jp/ClassProject.php");
+        //WWW www = new WWW("https://api.kinensai.jp/ClassProject.php");
+        WWW www = new WWW("http://localhost/ClassProject.php");
         yield return www;
         if (www.error != null)
         {
@@ -226,13 +240,32 @@ public class UserData : MonoBehaviour
             classProject = JsonMapper.ToObject<List<ClassProjectList>>("["+www.text+"]");
         }
     }
+    
+    public IEnumerator RequestClubProjects()
+    {
+        //WWW www = new WWW("https://api.kinensai.jp/ClubProject.php");
+        WWW www = new WWW("http://localhost/ClubProject.php");
+
+        yield return www;
+        if (www.error != null)
+        {
+            StartCoroutine(messageBox.PrintMessage("通信エラー", "接続状況を確認してください", true, true));
+        }
+        else
+        {
+            Debug.Log(www.text);
+            clubProject = JsonMapper.ToObject<List<ClubProjectList>>("[" + www.text + "]");
+        }
+
+    }
 
     public IEnumerator RequestTT(bool place)
     {
         WWWForm form = new WWWForm();
         if (place) form.AddField("place", "講堂");
         else       form.AddField("place", "ステージ");
-        WWW www = new WWW("https://api.kinensai.jp/TT.php", form);
+        //WWW www = new WWW("https://api.kinensai.jp/TT.php", form);
+        WWW www = new WWW("http://localhost/TT.php", form);
         yield return www;
         if (www.error != null)
         {

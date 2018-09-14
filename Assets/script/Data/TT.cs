@@ -8,6 +8,5 @@ public class TT {
     public string ntime;
     public string dtime;
     public string place;
-
-
+    public string imageURL;
 }

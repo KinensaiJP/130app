@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
-using System;
 
 public class ClassProject : MonoBehaviour {
 
@@ -54,6 +53,7 @@ public class ClassProject : MonoBehaviour {
                 {
                     title.text = param.name;
                     description.text = "場所: " + param.place + "\n\nメンバー:\n" + param.member + "\n\n開始時間:" + param.dtime;
+                    url = param.imageURL;
                 }
             }
             foreach (TT param in user.stageTT)
@@ -62,6 +62,7 @@ public class ClassProject : MonoBehaviour {
                 {
                     title.text = param.name;
                     description.text = "場所: " + param.place + "\n\nメンバー:\n" + param.member + "\n\n開始時間:" + param.dtime;
+                    url = param.imageURL;
                 }
             }
 
@@ -71,7 +72,7 @@ public class ClassProject : MonoBehaviour {
 
     private IEnumerator GetImage()
     {
-        WWW www = new WWW("http://localhost/image/"+url);
+        WWW www = new WWW("https://api.kinensai.jp/image/" + url);
         yield return www;
         image.texture = www.textureNonReadable;
     }
