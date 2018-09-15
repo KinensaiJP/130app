@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class TTScroll : MonoBehaviour {
     public RectTransform prefab;
+
     // Use this for initialization
     void Start()
     {
@@ -22,6 +23,8 @@ public class TTScroll : MonoBehaviour {
             text.text = tt.dtime.Substring(6,5) + " " + tt.name;
             var name = item.GetComponentInChildren<TTClick>();
             name.text = tt.name;
+            var book = item.GetComponentInChildren<TTBooking>();
+            book.id = tt.ID.ToString();
         }
 
         item = GameObject.Instantiate(prefab) as RectTransform;
@@ -45,6 +48,8 @@ public class TTScroll : MonoBehaviour {
             text.text = tt.dtime.Substring(6, 5) + " " + tt.name;
             var name = item.GetComponentInChildren<TTClick>();
             name.text = tt.name;
+            var book = item.GetComponentInChildren<TTBooking>();
+            book.id = tt.ID.ToString();
         }
 
     }

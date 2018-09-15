@@ -228,8 +228,8 @@ public class UserData : MonoBehaviour
 
     public IEnumerator RequestProjects()
     {
-        //WWW www = new WWW("https://api.kinensai.jp/ClassProject.php");
-        WWW www = new WWW("http://localhost/ClassProject.php");
+        WWW www = new WWW("https://api.kinensai.jp/ClassProject.php");
+        //WWW www = new WWW("http://localhost/ClassProject.php");
         yield return www;
         if (www.error != null)
         {
@@ -243,8 +243,8 @@ public class UserData : MonoBehaviour
     
     public IEnumerator RequestClubProjects()
     {
-        //WWW www = new WWW("https://api.kinensai.jp/ClubProject.php");
-        WWW www = new WWW("http://localhost/ClubProject.php");
+        WWW www = new WWW("https://api.kinensai.jp/ClubProject.php");
+        //WWW www = new WWW("http://localhost/ClubProject.php");
 
         yield return www;
         if (www.error != null)
@@ -264,8 +264,8 @@ public class UserData : MonoBehaviour
         WWWForm form = new WWWForm();
         if (place) form.AddField("place", "講堂");
         else       form.AddField("place", "ステージ");
-        //WWW www = new WWW("https://api.kinensai.jp/TT.php", form);
-        WWW www = new WWW("http://localhost/TT.php", form);
+        WWW www = new WWW("https://api.kinensai.jp/TT.php", form);
+        //WWW www = new WWW("http://localhost/TT.php", form);
         yield return www;
         if (www.error != null)
         {
