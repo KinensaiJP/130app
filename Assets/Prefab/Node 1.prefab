@@ -199,6 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 114942146698462772}
+  rawImage: {fileID: 114334285115661954}
 --- !u!114 &114797848259681832
 MonoBehaviour:
   m_ObjectHideFlags: 1

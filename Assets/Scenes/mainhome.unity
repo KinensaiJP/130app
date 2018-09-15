@@ -2090,7 +2090,7 @@ Prefab:
     - target: {fileID: 224348399836753796, guid: dccd30c09aeb3fb48b347215a7f23323,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00008533511
+      value: -0.0000060309353
       objectReference: {fileID: 0}
     - target: {fileID: 224697614124986686, guid: dccd30c09aeb3fb48b347215a7f23323,
         type: 2}
@@ -3520,7 +3520,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1046540368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3640,7 +3640,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1065957314
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3827,6 +3827,7 @@ MonoBehaviour:
   touchVal: 
   command: 
   flickGesture: {fileID: 1198523105}
+  messageBox: {fileID: 0}
 --- !u!4 &1198523103
 Transform:
   m_ObjectHideFlags: 0

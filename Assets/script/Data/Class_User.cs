@@ -31,4 +31,23 @@ public class User
         }
         return false;
     }
+
+    public void Remove(string _str)
+    {
+        string[] tmp = booking;
+        booking = new string[booking.Length - 1];
+        int j = 0;
+        for (int i = 0; i < tmp.Length - 1; i++)
+        {
+            if (_str != tmp[i]) booking[i] = tmp[j];
+            else
+            {
+                j++;
+                booking[i] = tmp[j];
+            }
+            j++;
+        }
+        UserData.instance.Save();
+        UserData.instance.Load();
+    }
 }

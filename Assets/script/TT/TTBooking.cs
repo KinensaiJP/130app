@@ -11,6 +11,7 @@ public class TTBooking : MonoBehaviour {
 
 	public void OnClick()
     {
+        GetComponentInParent<TTScroll>().AllButtonOff();
         if (UserData.instance.user.CheckBook(id))
             button.text = "通知をオフにする";
         else

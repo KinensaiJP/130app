@@ -28,8 +28,8 @@ public class UserData : MonoBehaviour
     public static UserData instance;
     public static Vector2 screenSize;
     public FlickGesture flickGesture;
+    public MessageBox messageBox;
 
-    private MessageBox messageBox;
     private Vector2 lastTouchPos;
     private Queue<string> notice;
     private float timeInterval;

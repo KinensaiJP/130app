@@ -39,6 +39,8 @@ public class ScrollController : MonoBehaviour
         text.text = "<size=60>クラス企画</size>";
         var image = item.GetComponentInChildren<RawImage>();
         image.gameObject.SetActive(false);
+        var button = item.GetComponentInChildren<Button>();
+        button.gameObject.SetActive(false);
 
         for (int i = 0; i < UserData.instance.classProject.Count; i++)
         {
@@ -46,7 +48,11 @@ public class ScrollController : MonoBehaviour
             item.SetParent(classObject.transform, false);
             text = item.GetComponentInChildren<Text>();
             image = item.GetComponentInChildren<RawImage>();
-            text.text = UserData.instance.classProject[i].className + " " + UserData.instance.classProject[i].title;
+            if (UserData.instance.classProject[i].className.StartsWith("H"))
+                text.text = "高校";
+            else
+                text.text = "中学";
+            text.text += UserData.instance.classProject[i].className.Substring(1, 2) + "\n" + UserData.instance.classProject[i].title;
             if (UserData.instance.classProject[i].latency == "Vacant")
             {
                 image.texture = icon1;
@@ -62,11 +68,24 @@ public class ScrollController : MonoBehaviour
         }
 
         Space("講堂企画", 1, kodoObject);
+        string lastIventName = "";
         foreach (TT tt in UserData.instance.kodoTT)
         {
+            if (lastIventName != tt.iventName)
+            {
+                item = GameObject.Instantiate(prefab) as RectTransform;
+                item.SetParent(kodoObject.transform, false);
+                text = item.GetComponentInChildren<Text>();
+                text.text = "<size=42><b>" + tt.iventName + "</b></size>";
+                text.alignment = TextAnchor.MiddleCenter;
+                image = item.GetComponentInChildren<RawImage>();
+                image.gameObject.SetActive(false);
+                button = item.GetComponentInChildren<Button>();
+                button.gameObject.SetActive(false);
+                lastIventName = tt.iventName;
+            }
             item = GameObject.Instantiate(prefab) as RectTransform;
             item.SetParent(kodoObject.transform, false);
-            //item.position = new Vector3(item.position.x, item.position.y - (i * 100f), item.position.z);
             text = item.GetComponentInChildren<Text>();
             image = item.GetComponentInChildren<RawImage>();
             text.text = tt.name;
@@ -76,6 +95,19 @@ public class ScrollController : MonoBehaviour
         Space("ステージ企画", 2, stageObject);
         foreach (TT tt in UserData.instance.stageTT)
         {
+            if (lastIventName != tt.iventName)
+            {
+                item = GameObject.Instantiate(prefab) as RectTransform;
+                item.SetParent(stageObject.transform, false);
+                text = item.GetComponentInChildren<Text>();
+                text.text = "<size=42><b>" + tt.iventName + "</b></size>";
+                text.alignment = TextAnchor.MiddleCenter;
+                image = item.GetComponentInChildren<RawImage>();
+                image.gameObject.SetActive(false);
+                button = item.GetComponentInChildren<Button>();
+                button.gameObject.SetActive(false);
+                lastIventName = tt.iventName;
+            }
             item = GameObject.Instantiate(prefab) as RectTransform;
             item.SetParent(stageObject.transform, false);
             text = item.GetComponentInChildren<Text>();
@@ -121,6 +153,8 @@ public class ScrollController : MonoBehaviour
         text.text = "";
         var image = item.GetComponentInChildren<RawImage>();
         image.gameObject.SetActive(false);
+        var button = item.GetComponentInChildren<Button>();
+        button.gameObject.SetActive(false);
         posSnap[index_] = list.Count;
         item = GameObject.Instantiate(prefab) as RectTransform;
         item.SetParent(rect_.transform, false);
@@ -128,6 +162,8 @@ public class ScrollController : MonoBehaviour
         text.text = "<size=60>"+title_+"</size>";
         image = item.GetComponentInChildren<RawImage>();
         image.gameObject.SetActive(false);
+        button = item.GetComponentInChildren<Button>();
+        button.gameObject.SetActive(false);
     }
 
 }
