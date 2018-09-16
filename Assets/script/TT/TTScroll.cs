@@ -60,7 +60,7 @@ public class TTScroll : MonoBehaviour {
     {
         foreach (TT tt in UserData.instance.stageTT)
         {   
-            if (date_ == Int32.Parse(tt.dtime.Substring(0, 2)))
+            if (date_ == Int32.Parse(tt.dtime.Substring(3, 2)))
             {
                 var item = GameObject.Instantiate(prefab) as RectTransform;
                 item.SetParent(transform, false);
