@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class LoadProjects : MonoBehaviour {
     public Text text;
-
+    public RawImage rawImage;
 	// Use this for initialization
 	void Start () {
 		
@@ -19,8 +19,12 @@ public class LoadProjects : MonoBehaviour {
 
     public void OnClick()
     {
-        if (GetComponentInParent<ScrollController>().mode == "Class")
-            UserData.instance.command = text.text.Substring(0, 3);
+        if (rawImage.gameObject.activeSelf)
+        {
+            if (text.text.StartsWith("高")) UserData.instance.command = "H";
+            else UserData.instance.command = "J";
+            UserData.instance.command += text.text.Substring(2, 2);
+        }
         else
             UserData.instance.command = text.text;
         UserData.instance.lastMode.Push(SceneManager.GetActiveScene().name);
