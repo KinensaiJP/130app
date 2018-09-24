@@ -30,6 +30,8 @@ public class TTScroll : MonoBehaviour {
         text.text = "";
         button = item.GetComponentInChildren<Button>();
         button.gameObject.SetActive(false);
+        var panel = item.Find("Panel");
+        panel.gameObject.SetActive(false);
 
         item = GameObject.Instantiate(prefab) as RectTransform;
         item.SetParent(transform, false);
@@ -105,5 +107,8 @@ public class TTScroll : MonoBehaviour {
         text.alignment = TextAnchor.MiddleCenter;
         var button = item.GetComponentInChildren<Button>();
         button.gameObject.SetActive(false);
+        var plane = item.Find("Panel");
+        plane.gameObject.SetActive(false);
     }
+
 }

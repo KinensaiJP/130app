@@ -11,7 +11,7 @@ public class ClassProject : MonoBehaviour {
 
     private UserData user;
     private string command;
-    private string url;
+    public string url;
     private string format;
     private int index;
     private List<ClassProjectList> list;
@@ -94,9 +94,11 @@ public class ClassProject : MonoBehaviour {
 
     private IEnumerator GetImage()
     {
-            WWW www = new WWW("https://api.kinensai.jp/image/" + url);
-            yield return www;
-            image.texture = www.textureNonReadable;
+        Debug.Log("https://api.kinensai.jp/image/" + url);
+        WWW www = new WWW("https://api.kinensai.jp/image/" + url);
+        yield return www;
+        image.texture = www.textureNonReadable;
+        image.rectTransform.sizeDelta = new Vector2(838.3302f, 838.3302f / www.textureNonReadable.width * www.texture.height);
     }
 
     // Update is called once per frame
