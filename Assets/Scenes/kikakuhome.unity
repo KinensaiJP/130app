@@ -279,7 +279,7 @@ Prefab:
     - target: {fileID: 224348399836753796, guid: dccd30c09aeb3fb48b347215a7f23323,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00006920568
+      value: -0.000044564516
       objectReference: {fileID: 0}
     - target: {fileID: 224697614124986686, guid: dccd30c09aeb3fb48b347215a7f23323,
         type: 2}
@@ -346,6 +346,11 @@ Prefab:
       propertyPath: clubObject
       value: 
       objectReference: {fileID: 1769444263}
+    - target: {fileID: 114970943240339032, guid: dccd30c09aeb3fb48b347215a7f23323,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dccd30c09aeb3fb48b347215a7f23323, type: 2}
   m_IsPrefabParent: 0
@@ -5075,8 +5080,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 331.83026, y: 0}
-  m_SizeDelta: {x: 663.6605, y: 0}
+  m_AnchoredPosition: {x: 330.90662, y: 0}
+  m_SizeDelta: {x: 661.81323, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &56343912
 MonoBehaviour:
@@ -28593,8 +28598,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 331.83026, y: 0}
-  m_SizeDelta: {x: 663.6605, y: 0}
+  m_AnchoredPosition: {x: 330.90662, y: 0}
+  m_SizeDelta: {x: 661.81323, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &717691470
 MonoBehaviour:
@@ -47977,8 +47982,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 331.83026, y: 0}
-  m_SizeDelta: {x: 663.6605, y: 0}
+  m_AnchoredPosition: {x: 330.90662, y: 0}
+  m_SizeDelta: {x: 661.81323, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1605189615
 MonoBehaviour:
@@ -57300,8 +57305,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 331.83026, y: 0}
-  m_SizeDelta: {x: 663.6605, y: 0}
+  m_AnchoredPosition: {x: 330.90662, y: 0}
+  m_SizeDelta: {x: 661.81323, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1769444264
 MonoBehaviour:
@@ -80744,7 +80749,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: d3e5fd9cf74fc684cb3fec714face802, type: 3}
     m_FontSize: 71
     m_FontStyle: 0
     m_BestFit: 0

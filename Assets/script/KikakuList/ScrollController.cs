@@ -67,21 +67,25 @@ public class ScrollController : MonoBehaviour
             }
         }
 
-        Space("講堂企画", 1, kodoObject);
         string lastIventName = "";
         foreach (TT tt in UserData.instance.kodoTT)
         {
             if (lastIventName != tt.iventName)
             {
+                Space("講堂企画/" + tt.iventName, 1, kodoObject);
+                /*
                 item = GameObject.Instantiate(prefab) as RectTransform;
                 item.SetParent(kodoObject.transform, false);
                 text = item.GetComponentInChildren<Text>();
                 text.text = "<size=42><b>" + tt.iventName + "</b></size>";
-                text.alignment = TextAnchor.MiddleCenter;
+                text.alignment = TextAnchor.MiddleLeft;
                 image = item.GetComponentInChildren<RawImage>();
                 image.gameObject.SetActive(false);
                 button = item.GetComponentInChildren<Button>();
                 button.gameObject.SetActive(false);
+                text.rectTransform.offsetMax = new Vector2(0, 0);
+                text.rectTransform.anchoredPosition = new Vector2(0, 0);
+                */
                 lastIventName = tt.iventName;
             }
             item = GameObject.Instantiate(prefab) as RectTransform;
@@ -89,23 +93,28 @@ public class ScrollController : MonoBehaviour
             text = item.GetComponentInChildren<Text>();
             image = item.GetComponentInChildren<RawImage>();
             text.text = tt.name;
+            text.alignment = TextAnchor.MiddleCenter;
+            text.rectTransform.offsetMax = new Vector2(0, 0);
+            text.rectTransform.offsetMax = new Vector2(-50, 50);
             image.gameObject.SetActive(false);
         }
 
-        Space("ステージ企画", 2, stageObject);
         foreach (TT tt in UserData.instance.stageTT)
         {
             if (lastIventName != tt.iventName)
             {
+                Space("<size=47>ステージ企画/</size>" + "<size=39>" + tt.iventName + "</size>", 1, kodoObject);
+                /*
                 item = GameObject.Instantiate(prefab) as RectTransform;
                 item.SetParent(stageObject.transform, false);
                 text = item.GetComponentInChildren<Text>();
-                text.text = "<size=42><b>" + tt.iventName + "</b></size>";
+                text.text = "<size=40><b>" + tt.iventName + "</b></size>";
                 text.alignment = TextAnchor.MiddleCenter;
                 image = item.GetComponentInChildren<RawImage>();
                 image.gameObject.SetActive(false);
                 button = item.GetComponentInChildren<Button>();
                 button.gameObject.SetActive(false);
+                */
                 lastIventName = tt.iventName;
             }
             item = GameObject.Instantiate(prefab) as RectTransform;
@@ -113,6 +122,9 @@ public class ScrollController : MonoBehaviour
             text = item.GetComponentInChildren<Text>();
             image = item.GetComponentInChildren<RawImage>();
             text.text = tt.name;
+            text.rectTransform.offsetMax = new Vector2(0, 0);
+            text.rectTransform.offsetMax = new Vector2(-50, 50);
+            text.alignment = TextAnchor.MiddleCenter;
             image.gameObject.SetActive(false);
         }
 
@@ -159,7 +171,10 @@ public class ScrollController : MonoBehaviour
         item = GameObject.Instantiate(prefab) as RectTransform;
         item.SetParent(rect_.transform, false);
         text = item.GetComponentInChildren<Text>();
-        text.text = "<size=60>"+title_+"</size>";
+        text.text = "<size=50>"+title_+"</size>";
+        text.rectTransform.offsetMax = new Vector2(0, 50);
+        text.rectTransform.offsetMin = new Vector2(0, -50);
+        text.alignment = TextAnchor.MiddleLeft;
         image = item.GetComponentInChildren<RawImage>();
         image.gameObject.SetActive(false);
         button = item.GetComponentInChildren<Button>();
