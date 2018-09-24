@@ -279,7 +279,7 @@ Prefab:
     - target: {fileID: 224348399836753796, guid: dccd30c09aeb3fb48b347215a7f23323,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00012432827
+      value: 0.000056072382
       objectReference: {fileID: 0}
     - target: {fileID: 224697614124986686, guid: dccd30c09aeb3fb48b347215a7f23323,
         type: 2}
@@ -309,7 +309,7 @@ Prefab:
     - target: {fileID: 224348399836753796, guid: dccd30c09aeb3fb48b347215a7f23323,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -0.00012207031
+      value: -0.000030517578
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dccd30c09aeb3fb48b347215a7f23323, type: 2}
@@ -43808,7 +43808,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1538835205
 RectTransform:
   m_ObjectHideFlags: 0
@@ -57913,10 +57913,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scroll: {fileID: 512180945}
+  kikakuList: {fileID: 0}
   lamp: {fileID: 1006599172}
   lamp1: {fileID: 2800000, guid: 77a18ecdc6f5bc2488308ff4cf1342fb, type: 3}
   lamp2: {fileID: 2800000, guid: 1e3ef33f408398b4387497f692dc53f5, type: 3}
   lamp3: {fileID: 2800000, guid: 957b95cf909a2af4d9e1f15f0e4ec307, type: 3}
+  lamp4: {fileID: 0}
 --- !u!114 &1863995859
 MonoBehaviour:
   m_ObjectHideFlags: 0
