@@ -12,6 +12,23 @@ public class SideMenu : MonoBehaviour {
     public bool enable;
     Vector3 deffalt;
     bool lastSwitch;
+
+    public GameObject obj;
+    //回転用
+    Vector2 sPos;   //タッチした座標
+    Quaternion sRot;//タッチしたときの回転
+    Quaternion cRot;//タッチしたときの回転
+    float wid, hei, diag;  //スクリーンサイズ
+    float tx, ty;    //変数
+
+    Quaternion beforeRotation;
+
+    //ピンチイン ピンチアウト用
+    float vMin = 0.5f, vMax = 2.0f;  //倍率制限
+    float sDist = 0.0f, nDist = 0.0f; //距離変数
+    Vector3 initScale; //最初の大きさ
+    float v = 1.0f; //現在倍率
+
     private void OnEnable()
     {
         //flickGesture.Flicked += OnFlicked;
@@ -41,33 +58,71 @@ public class SideMenu : MonoBehaviour {
         enable = false;
         deffalt = transform.localPosition;
 
+        wid = Screen.width;
+        hei = Screen.height;
     }
-	
-	// Update is called once per frame
-	void Update () {
-        if (lastSwitch != enable)
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        if (TouchUtil.GetTouch() != TouchInfo.None)
         {
-            if (enable == false)
+            //回転
+            TouchInfo info = TouchUtil.GetTouch();
+            if (info == TouchInfo.Began)
             {
-                if (transform.localPosition.x > deffalt.x)
-                    transform.localPosition = new Vector3(transform.localPosition.x - 2500f * Time.deltaTime, 0f, 0f);
-                else
-                {
-                    transform.localPosition = new Vector3(deffalt.x, 0f, 0f);
-                    lastSwitch = enable;
-                }
-                back.gameObject.SetActive(false);
+                sPos = TouchUtil.GetTouchPosition();
+                sRot = obj.transform.rotation;
+
+
             }
-            else
+            else if (info == TouchInfo.Moved)
             {
-                if (transform.localPosition.x < deffalt.x + 800f)
-                    transform.localPosition = new Vector3(transform.localPosition.x + 2500f * Time.deltaTime, 0f, 0f);
+                tx = (TouchUtil.GetTouchPosition().x - sPos.x) / wid;
+
+                if (sPos.x < 30)
+                {
+                    //Debug.Log(tx);
+                    float buf = wid * 2 * tx;
+                    if (buf > 900f) buf = 900f;
+                    obj.transform.localPosition = deffalt + new Vector3(buf, 0, 0);
+                    if(wid * 2 * tx > 100)
+                    {
+                        enable = true;
+                    }
+                }
+
+            }
+
+        }
+        else
+        {
+
+            if (lastSwitch != enable)
+            {
+                if (enable == false)
+                {
+                    if (transform.localPosition.x > deffalt.x)
+                        transform.localPosition = new Vector3(transform.localPosition.x - 2500f * Time.deltaTime, 0f, 0f);
+                    else
+                    {
+                        transform.localPosition = new Vector3(deffalt.x, 0f, 0f);
+                        lastSwitch = enable;
+                    }
+                    back.gameObject.SetActive(false);
+                }
                 else
                 {
-                    transform.localPosition = new Vector3(deffalt.x + 900f, 0f, 0f);
-                    lastSwitch = enable;
+                    if (transform.localPosition.x < deffalt.x + 800f)
+                        transform.localPosition = new Vector3(transform.localPosition.x + 2500f * Time.deltaTime, 0f, 0f);
+                    else
+                    {
+                        transform.localPosition = new Vector3(deffalt.x + 900f, 0f, 0f);
+                        lastSwitch = enable;
+                    }
+                    back.gameObject.SetActive(true);
                 }
-                back.gameObject.SetActive(true);
             }
         }
     }

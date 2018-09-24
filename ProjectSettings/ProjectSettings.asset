@@ -18,7 +18,7 @@ PlayerSettings:
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1
-  m_ShowUnitySplashLogo: 1
+  m_ShowUnitySplashLogo: 0
   m_SplashScreenOverlayOpacity: 0.659
   m_SplashScreenAnimation: 0
   m_SplashScreenLogoStyle: 0
@@ -41,8 +41,6 @@ PlayerSettings:
     height: 1
   m_SplashScreenLogos:
   - logo: {fileID: 21300000, guid: f334c17b5e4bb8747ba38fc22db6186c, type: 3}
-    duration: 2
-  - logo: {fileID: 10404, guid: 0000000000000000e000000000000000, type: 0}
     duration: 2
   m_VirtualRealitySplashScreen: {fileID: 2800000, guid: f334c17b5e4bb8747ba38fc22db6186c,
     type: 3}
@@ -880,9 +878,9 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 3a45f9f9-0367-4a25-8e67-7afe9d1e7316
+  cloudProjectId: 24757737-caf5-4878-b0c2-f1ac9c3c28ce
   projectName: kinensai App
-  organizationId: gogo-2001
+  organizationId: masuda-taito-3490825
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 public class ButtonRotate : MonoBehaviour {
-
+                
     // Use this for initialization
     void Start () {
 		
