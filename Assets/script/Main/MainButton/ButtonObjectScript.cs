@@ -13,11 +13,35 @@ public class ButtonObjectScript : MonoBehaviour {
     private float step;
     private int toButton;
 
-	void Start () {
+    public GameObject obj;
+
+    public bool active = true;
+
+    //回転用
+    Vector2 sPos;   //タッチした座標
+    Quaternion sRot;//タッチしたときの回転
+    Quaternion cRot;//タッチしたときの回転
+    float wid, hei, diag;  //スクリーンサイズ
+    float tx, ty;    //変数
+
+    Quaternion beforeRotation;
+
+    //ピンチイン ピンチアウト用
+    float vMin = 0.5f, vMax = 2.0f;  //倍率制限
+    float sDist = 0.0f, nDist = 0.0f; //距離変数
+    Vector3 initScale; //最初の大きさ
+    float v = 1.0f; //現在倍率
+    
+
+    void Start () {
         user = UserData.instance;
         direction = new Vector3[5]
         { new Vector3(-23.704f, 40.49f, -18.944f), new Vector3(8.667001f, 105.308f, -28.833f), new Vector3(30f, 180f, 0f), new Vector3(8.937f, -105.805f, 28.759f), new Vector3(-24.41f, -38.183f, 18.006f) };
-	}
+        wid = Screen.width;
+        hei = Screen.height;
+        diag = Mathf.Sqrt(Mathf.Pow(wid, 2) + Mathf.Pow(hei, 2));
+        initScale = obj.transform.localScale;
+    }
 	
     void GetFrontButton()
     {
@@ -31,47 +55,39 @@ public class ButtonObjectScript : MonoBehaviour {
             }
         }
     }
-	
-	void Update () {
-        GetFrontButton();
-        float x;
-        switch (user.touchVal[0])
+
+    Quaternion b1;
+    Quaternion b2;
+
+    void Update ()
+    {
+
+        obj.transform.Rotate(new Vector3(0, -30 * tx / 1.2f, 0), Space.Self);
+        tx /= 1.2f;
+        
+        if (TouchUtil.GetTouchPosition() != Vector3.zero)
         {
-            case 0:
-                transform.Rotate(new Vector3(0f, 0.1f, 0f));
-                break;
-            case 2:
-                dif = user.swipeDif.x * 30;
-                transform.Rotate(new Vector3(0f, dif, 0f));
-                break;
-            case 3:
-                if (frontButton == 4)
-                {
-                    toButton = 0;
-                }
-                else
-                {
-                    toButton = frontButton + 1;
-                }
-                user.touchVal[0] = 5;
-                break;
-            case 4:
-                if (frontButton == 0)
-                {
-                    toButton = 4;
-                }
-                else
-                {
-                    toButton = frontButton - 1;
-                }
-                user.touchVal[0] = 5;
-                break;
-            case 5:
-                x = button[toButton].transform.position.x;
-                step = 2.5f * Time.deltaTime;
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(direction[toButton]), step);
-                if (x >= -0.1f && x <= 0.1f) user.touchVal[0] = 0;
-                break;
+            TouchInfo info = TouchUtil.GetTouch();
+            if (info == TouchInfo.Began)
+            {
+                sPos = TouchUtil.GetTouchPosition();
+                sRot = obj.transform.rotation;
+            }
+            else if (info == TouchInfo.Moved)
+            {
+                tx = (TouchUtil.GetTouchPosition().x - sPos.x) / wid;
+                ty = (TouchUtil.GetTouchPosition().y - sPos.y) / hei;
+                
+                obj.transform.rotation = sRot;
+                obj.transform.Rotate(new Vector3(0, -90 * tx, 0), Space.Self);
+            }
+        }
+        else
+        {
+           if(!(Mathf.Abs(tx) > 0.01f))
+            {
+                tx = -0.01f;
+            }
         }
     }
 }

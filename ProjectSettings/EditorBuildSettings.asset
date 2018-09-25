@@ -8,12 +8,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 0
+    path: Assets/Scenes/mainhome_.unity
+    guid: fc609999bbf0ece4db7d885be07b269a
+  - enabled: 0
+    path: Assets/Scenes/kikakuhome_.unity
+    guid: bc0c2197163c89444801c75960c34b27
   - enabled: 1
     path: Assets/Scenes/mainhome.unity
-    guid: fc609999bbf0ece4db7d885be07b269a
-  - enabled: 1
-    path: Assets/Scenes/kikakuhome.unity
-    guid: bc0c2197163c89444801c75960c34b27
+    guid: b1fdc9aa3eb6ff947b3118620888d014
   - enabled: 1
     path: Assets/Scenes/ankethome.unity
     guid: f3d1f7c7f07afa84da33002d953b20e9
@@ -35,4 +38,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Kiyaku.unity
     guid: 3517f3d9e64fd5746bf3a02f3fe7c109
+  - enabled: 1
+    path: Assets/Scenes/kikakuhome.unity
+    guid: bd2e81f8d07a32d4a99a7243b549f444
   m_configObjects: {}

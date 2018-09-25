@@ -18,7 +18,7 @@ public class ScrollController : MonoBehaviour
     public float[] posSnap;
     float numOfRow;
     int objectNum;
-
+    
     public void ReDraw(int snap)
     {
         thisRecttransform.anchoredPosition = new Vector3(0f, posSnap[snap]+10, 0f);
@@ -41,6 +41,7 @@ public class ScrollController : MonoBehaviour
         image.gameObject.SetActive(false);
         var button = item.GetComponentInChildren<Button>();
         button.gameObject.SetActive(false);
+
 
         for (int i = 0; i < UserData.instance.classProject.Count; i++)
         {
@@ -104,6 +105,7 @@ public class ScrollController : MonoBehaviour
             if (lastIventName != tt.iventName)
             {
                 Space("<size=47>ステージ企画/</size>" + "<size=39>" + tt.iventName + "</size>", 1, kodoObject);
+                
                 /*
                 item = GameObject.Instantiate(prefab) as RectTransform;
                 item.SetParent(stageObject.transform, false);
@@ -136,6 +138,9 @@ public class ScrollController : MonoBehaviour
             text = item.GetComponentInChildren<Text>();
             image = item.GetComponentInChildren<RawImage>();
             text.text = param.name;
+            text.rectTransform.offsetMax = new Vector2(0, 0);
+            text.rectTransform.offsetMax = new Vector2(-50, 50);
+            text.alignment = TextAnchor.MiddleCenter;
             image.gameObject.SetActive(false);
         }
 
