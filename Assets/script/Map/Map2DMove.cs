@@ -40,11 +40,17 @@ public class Map2DMove : MonoBehaviour {
     public void ZoomIn()
     {
         obj.transform.localScale /=0.8f;
+
+        if (obj.transform.localScale.x > 3f) obj.transform.localScale = new Vector3(3.05f, 3.05f, 3.05f);
+
     }
 
     public void ZoomOut()
     {
         obj.transform.localScale /= 1.25f;
+
+
+        if (obj.transform.localScale.x < 0.32f) obj.transform.localScale = new Vector3(0.32768f, 0.32768f, 0.32768f);
     }
 
     void Start()
@@ -71,7 +77,7 @@ public class Map2DMove : MonoBehaviour {
             {
                 tx = (TouchUtil.GetTouchPosition().x - sPos.x) / wid; //横移動量(-1<tx<1)
                 ty = (TouchUtil.GetTouchPosition().y - sPos.y) / hei; //縦移動量(-1<ty<1)
-                obj.transform.position = sRot + new Vector3(obj.transform.localScale.x * kando * tx, obj.transform.localScale.x * kando * ty, 0);
+                obj.transform.position = sRot + new Vector3(obj.transform.localScale.x * kando* kando * tx, obj.transform.localScale.x * kando * kando * ty, 0);
                 //obj.transform.Rotate(new Vector3(90 * ty, -90 * tx, 0), Space.World);
             }
         }

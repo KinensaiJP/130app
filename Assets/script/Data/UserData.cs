@@ -136,7 +136,7 @@ public class UserData : MonoBehaviour
         if (timeInterval >= 3f && noticeflag && notice.Count > 0)
         {
             noticeflag = false;
-            StartCoroutine(Notice());
+            //StartCoroutine(Notice());
             timeInterval = 0f;
         }
         if (Application.platform == RuntimePlatform.Android)
@@ -309,60 +309,10 @@ public class UserData : MonoBehaviour
         }
 
     }
-
-    public IEnumerator Notice()
+    /*
+    public void Notice(string Name,)
     {
-        long now = Int64.Parse(DateTime.Now.ToString("yyyyMMddHHmmss"));
-        string id = notice.Dequeue();
-        foreach (TT tt in kodoTT)
-        {
-            if (tt.ID.ToString() == id)
-            {
-                if (Int64.Parse(tt.ntime) - 1500 < now && Int64.Parse(tt.ntime) > now)
-                {
-                    StartCoroutine(
-                     messageBox.PrintMessage(
-                      "まもなく開始", tt.name + "\n日時:" + tt.dtime + "\n場所:" + tt.place, true, false));
-                }
-                else notice.Enqueue(id);
-            }
-        }
-        foreach (TT tt in stageTT)
-        {
-            if (tt.ID.ToString() == id)
-            {
-                if (Int64.Parse(tt.ntime) - 1500 < now && Int64.Parse(tt.ntime) > now)
-                {
-                    StartCoroutine(
-                     messageBox.PrintMessage(
-                      "まもなく開始", tt.name + "\n日時:" + tt.dtime + "\n場所:" + tt.place, true, false));
-                }
-                else notice.Enqueue(id);
-            }
-        }
-        foreach (ClassProjectList tt in classProject)
-        {
-            if (tt.className.ToString() == id)
-            {
-                bool flag = false;
-                foreach (string time in tt.TT.Split('\n'))
-                {
-                    if (Int64.Parse(time) - 1500 < now && Int64.Parse(time) > now)
-                    {
-                        flag = true;
-                        string place = "";
-                        if (tt.className.ToString() == "H") place = "高校";
-                        else place = "中学";
-                        StartCoroutine(
-                         messageBox.PrintMessage(
-                          "まもなく開始", tt.title + "\n日時:" + time.Substring(4,2) + "月" + time.Substring(6,2) + "日 " + time.Substring(8,2) + "時" + time.Substring(10,2) + "分" + "\n場所: " + place + tt.className.Remove(0, 1), true, false));
-                    }
-                }
-                if (flag == false) notice.Enqueue(id);
-            }
-        }
-        yield return messageBox.ok.OnClickAsObservable().First().ToYieldInstruction();
         noticeflag = true;
     }
-
+    */
 }

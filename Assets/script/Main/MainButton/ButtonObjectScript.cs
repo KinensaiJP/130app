@@ -64,10 +64,9 @@ public class ButtonObjectScript : MonoBehaviour {
 
         obj.transform.Rotate(new Vector3(0, -30 * tx / 1.2f, 0), Space.Self);
         tx /= 1.2f;
-
-        if (Input.touchCount == 1 || active)
+        
+        if (TouchUtil.GetTouchPosition() != Vector3.zero)
         {
-            //回転
             TouchInfo info = TouchUtil.GetTouch();
             if (info == TouchInfo.Began)
             {
@@ -81,52 +80,14 @@ public class ButtonObjectScript : MonoBehaviour {
                 
                 obj.transform.rotation = sRot;
                 obj.transform.Rotate(new Vector3(0, -90 * tx, 0), Space.Self);
-                
             }
         }
-
-
-        /*
-        GetFrontButton();
-        float x;
-        switch (user.touchVal[0])
+        else
         {
-            case 0:
-                transform.Rotate(new Vector3(0f, 0.1f, 0f));
-                break;
-            case 2:
-                dif = user.swipeDif.x * 30;
-                transform.Rotate(new Vector3(0f, dif, 0f));
-                break;
-            case 3:
-                if (frontButton == 4)
-                {
-                    toButton = 0;
-                }
-                else
-                {
-                    toButton = frontButton + 1;
-                }
-                user.touchVal[0] = 5;
-                break;
-            case 4:
-                if (frontButton == 0)
-                {
-                    toButton = 4;
-                }
-                else
-                {
-                    toButton = frontButton - 1;
-                }
-                user.touchVal[0] = 5;
-                break;
-            case 5:
-                x = button[toButton].transform.position.x;
-                step = 2.5f * Time.deltaTime;
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(direction[toButton]), step);
-                if (x >= -0.1f && x <= 0.1f) user.touchVal[0] = 0;
-                break;
+           if(!(Mathf.Abs(tx) > 0.01f))
+            {
+                tx = -0.01f;
+            }
         }
-        */
     }
 }
